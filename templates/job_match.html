@@ -1,0 +1,136 @@
+
+{% extends "base.html" %}
+
+{% block title %}Job Match | Job Tracker{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>Job Match</h1>
+        <p>Find opportunities that match your skills.</p>
+    </div>
+</div>
+
+<section class="form-section">
+    <h2>Your Skills</h2>
+    <p>Enter your skills separated by commas.</p>
+
+    <form method="POST" action="{{ url_for('job_match') }}">
+        <div class="form-group">
+            <label for="skills">Skills</label>
+            <textarea
+                id="skills"
+                name="skills"
+                rows="4"
+                placeholder="Example: Python, SQL, Excel, Flask, Git"
+                required>{{ user_skills_text }}</textarea>
+        </div>
+
+        <button type="submit" class="primary-button">
+            Find My Matches
+        </button>
+    </form>
+</section>
+
+{% if searched %}
+
+<section class="list-section">
+    <div class="section-heading">
+        <h2>Your Results</h2>
+        <p>{{ matched_jobs|length }} jobs with usable requirements out of {{ total_jobs }} total jobs.</p>
+    </div>
+
+    {% if ai_used %}
+    <div class="ai-note">
+        <strong>AI-assisted matching</strong>
+        <p>Gemini identified these skill equivalencies:</p>
+
+        <ul>
+            {% for item in ai_equivalencies %}
+            <li>{{ item.user_skill }} → {{ item.job_skill }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+    <p class="ai-note">
+        No additional skill equivalencies were identified.
+        Matching is based on exact skill matches.
+    </p>
+    {% endif %}
+
+    {% if matched_jobs %}
+
+        {% for job in matched_jobs %}
+
+        <div class="company-card">
+            <div class="company-card-header">
+                <div>
+                    <h3>{{ job.job_title }}</h3>
+                    <p>{{ job.company_name }}</p>
+                </div>
+
+                <span class="match-score">
+                    {{ job.match_percentage }}% Match
+                </span>
+            </div>
+
+            <div class="company-details">
+
+                <div>
+                    <strong>Matched Required Skills</strong>
+                    <p>
+                        {% if job.matched_required %}
+                            {{ job.matched_required|join(", ") }}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div>
+                    <strong>Matched Preferred Skills</strong>
+                    <p>
+                        {% if job.matched_preferred %}
+                            {{ job.matched_preferred|join(", ") }}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div>
+                    <strong>Missing Required Skills</strong>
+                    <p>
+                        {% if job.missing_required %}
+                            {{ job.missing_required|join(", ") }}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div>
+                    <strong>Missing Preferred Skills</strong>
+                    <p>
+                        {% if job.missing_preferred %}
+                            {{ job.missing_preferred|join(", ") }}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+        <p>No jobs with usable skill requirements were found.</p>
+    {% endif %}
+</section>
+
+{% endif %}
+
+{% endblock %}

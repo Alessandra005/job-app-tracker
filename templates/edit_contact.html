@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Contact | Job Tracker{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1>Edit Contact</h1>
+        <p>Update this contact's information.</p>
+    </div>
+    <a href="{{ url_for('contacts') }}" class="edit-link">← Back to Contacts</a>
+</div>
+
+<section class="form-section">
+    <form method="POST">
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label for="first_name">First Name *</label>
+                <input type="text" id="first_name" name="first_name"
+                       value="{{ contact.first_name }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="last_name">Last Name *</label>
+                <input type="text" id="last_name" name="last_name"
+                       value="{{ contact.last_name }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="company_id">Company *</label>
+                <select id="company_id" name="company_id" required>
+                    {% for company in companies %}
+                    <option value="{{ company.company_id }}"
+                        {% if company.company_id == contact.company_id %}selected{% endif %}>
+                        {{ company.company_name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="job_title">Job Title</label>
+                <input type="text" id="job_title" name="job_title"
+                       value="{{ contact.job_title or '' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email"
+                       value="{{ contact.email or '' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" id="phone" name="phone"
+                       value="{{ contact.phone or '' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="linkedin_url">LinkedIn URL</label>
+                <input type="url" id="linkedin_url" name="linkedin_url"
+                       value="{{ contact.linkedin_url or '' }}">
+            </div>
+
+            <div class="form-group">
+                <label for="notes">Notes</label>
+                <textarea id="notes" name="notes" rows="4">{{ contact.notes or '' }}</textarea>
+            </div>
+
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="primary-button">Save Changes</button>
+            <a href="{{ url_for('contacts') }}" class="edit-link">Cancel</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,66 @@
+
+{% extends "base.html" %}
+
+{% block title %}Edit Company | Job Tracker{% endblock %}
+
+{% block content %}
+
+<section class="welcome">
+    <p class="eyebrow">YOUR NETWORK</p>
+    <h1>Edit company</h1>
+    <p>Update the information for {{ company.company_name }}.</p>
+</section>
+
+<section class="stat-card">
+
+    <form method="POST"
+          action="{{ url_for('edit_company', company_id=company.company_id) }}">
+
+        <label>Company name *</label>
+        <input
+            type="text"
+            name="company_name"
+            value="{{ company.company_name }}"
+            required
+        >
+
+        <label>Industry</label>
+        <input
+            type="text"
+            name="industry"
+            value="{{ company.industry or '' }}"
+        >
+
+        <label>Website</label>
+        <input
+            type="url"
+            name="website"
+            value="{{ company.website or '' }}"
+        >
+
+        <label>City</label>
+        <input
+            type="text"
+            name="city"
+            value="{{ company.city or '' }}"
+        >
+
+        <label>State</label>
+        <input
+            type="text"
+            name="state"
+            value="{{ company.state or '' }}"
+        >
+
+        <label>Notes</label>
+        <textarea name="notes">{{ company.notes or '' }}</textarea>
+
+        <button type="submit">Save changes</button>
+
+        <a href="{{ url_for('companies') }}">Cancel</a>
+
+    </form>
+
+</section>
+
+{% endblock %}

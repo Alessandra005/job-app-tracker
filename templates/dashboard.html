@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="welcome">
+    <p class="eyebrow">YOUR CAREER WORKSPACE</p>
+    <h1>Job Application Tracker</h1>
+    <p>Keep track of opportunities, applications, and connections.</p>
+</section>
+
+<section class="stats-grid">
+
+    <div class="stat-card">
+        <span class="stat-label">Companies</span>
+        <h2>{{ counts.companies }}</h2>
+        <p>Companies tracked</p>
+    </div>
+
+    <div class="stat-card">
+        <span class="stat-label">Jobs</span>
+        <h2>{{ counts.jobs }}</h2>
+        <p>Opportunities saved</p>
+    </div>
+
+    <div class="stat-card">
+        <span class="stat-label">Applications</span>
+        <h2>{{ counts.applications }}</h2>
+        <p>Applications submitted</p>
+    </div>
+
+    <div class="stat-card">
+        <span class="stat-label">Contacts</span>
+        <h2>{{ counts.contacts }}</h2>
+        <p>Professional connections</p>
+    </div>
+
+</section>
+
+<section class="section-heading">
+    <div>
+        <p class="eyebrow">WORKSPACE</p>
+        <h2>Manage your search</h2>
+    </div>
+</section>
+
+<section class="workspace-grid">
+    <div class="workspace-card">
+        <h3>Companies</h3>
+        <p>Organize companies and their information.</p>
+        <span>Coming next</span>
+    </div>
+
+    <div class="workspace-card">
+        <h3>Jobs</h3>
+        <p>Save opportunities and job requirements.</p>
+        <span>Coming next</span>
+    </div>
+
+    <div class="workspace-card">
+        <h3>Applications</h3>
+        <p>Track your application progress.</p>
+        <span>Coming next</span>
+    </div>
+
+    <div class="workspace-card">
+        <h3>Contacts</h3>
+        <p>Keep professional connections organized.</p>
+        <span>Coming next</span>
+    </div>
+
+    <div class="workspace-card">
+        <h3>AI Job Match</h3>
+        <p>Compare your skills with saved opportunities.</p>
+        <span>Coming next</span>
+    </div>
+</section>
+
+{% endblock %}
