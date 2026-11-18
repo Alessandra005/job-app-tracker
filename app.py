@@ -159,7 +159,10 @@ def add_job_route():
             "job_type": request.form.get("job_type"),
             "job_url": request.form.get("job_url", "").strip(),
             "date_posted": request.form.get("date_posted") or None,
-            "requirements": requirements
+            "requirements": {
+                "required_skills": requirements,
+                "preferred_skills": []
+            }
         }
 
         if not data["job_title"]:

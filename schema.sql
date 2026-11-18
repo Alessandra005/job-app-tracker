@@ -1,5 +1,4 @@
 
-@'
 CREATE DATABASE IF NOT EXISTS job_trackers
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_0900_ai_ci;
@@ -80,4 +79,3 @@ CREATE TABLE IF NOT EXISTS contacts (
     CONSTRAINT contacts_ibfk_1
         FOREIGN KEY (company_id) REFERENCES companies(company_id)
 ) ENGINE=InnoDB;
-'@ | Set-Content -Encoding utf8 .\schema.sql
