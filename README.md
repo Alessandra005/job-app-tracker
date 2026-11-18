@@ -1,5 +1,3 @@
-
-@'
 # Job Application Tracker
 
 A Flask and MySQL web application for organizing job opportunities, tracking applications, managing company contacts, and evaluating how well your skills match job requirements.
@@ -63,11 +61,9 @@ Before running the application, install:
 ### 1. Clone the repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/Alessandra005/job-app-tracker
 cd assignment5
 ```
-
-Replace `YOUR_GITHUB_REPOSITORY_URL` with your repository's URL.
 
 ### 2. Create a virtual environment
 
@@ -159,5 +155,3 @@ See `schema.sql` for the database definitions.
 ## AI Documentation
 
 See [AI_USAGE.md](AI_USAGE.md) for information about the generative AI tools used, prompts, implementation decisions, and lessons learned.
-
-'@ | Set-Content -Encoding utf8 .\README.md
