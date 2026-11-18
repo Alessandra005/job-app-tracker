@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{% block title %}Job Tracker{% endblock %}</title>
+    <title>{% block title %}Job Application Tracker{% endblock %}</title>
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='style.css') }}">
@@ -14,7 +13,9 @@
 <body>
 
     <nav class="navbar">
-        <a href="/" class="brand">job<span>tracker.</span></a>
+        <a href="{{ url_for('dashboard') }}" class="brand">
+            job<span>tracker.</span>
+        </a>
 
         <div class="nav-links">
             <a href="{{ url_for('dashboard') }}">Dashboard</a>
@@ -27,20 +28,20 @@
     </nav>
 
     <main class="container">
-
         {% with messages = get_flashed_messages() %}
             {% for message in messages %}
                 <p class="flash-message">{{ message }}</p>
             {% endfor %}
         {% endwith %}
 
-        {% block content %}
-        {% endblock %}
-
+        <div class="page-content">
+            {% block content %}
+            {% endblock %}
+        </div>
     </main>
 
-    <footer>
-        Job Application Tracker · Built with Flask and MySQL
+    <footer class="site-footer">
+        Job Application Tracker
     </footer>
 
 </body>

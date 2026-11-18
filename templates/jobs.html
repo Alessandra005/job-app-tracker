@@ -109,8 +109,49 @@
             </p>
         {% endif %}
 
-        {% if job.requirements %}
-            <p>Requirements: {{ job.requirements }}</p>
+        {% set req = job.display_requirements %}
+        {% if req %}
+            <div class="job-requirements">
+                <h4>Requirements</h4>
+                {% if req.required_skills %}
+                    <p>
+                        <strong>Required skills:</strong>
+                        {{ req.required_skills | join(", ") }}
+                    </p>
+                {% endif %}
+
+                {% if req.preferred_skills %}
+                    <p>
+                        <strong>Preferred skills:</strong>
+                        {{ req.preferred_skills | join(", ") }}
+                    </p>
+                {% endif %}
+
+                {% if req.education %}
+                    <p>
+                        <strong>Education:</strong>
+                        {{ req.education }}
+                    </p>
+                {% endif %}
+
+                {% if req.experience_years is defined %}
+                    <p>
+                        <strong>Experience:</strong>
+                        {{ req.experience_years }} years
+                    </p>
+                {% endif %}
+
+                {% if req.remote_option is defined %}
+                    <p>
+                        <strong>Remote option:</strong>
+                        {{ "Yes" if req.remote_option else "No" }}
+                    </p>
+                {% endif %}
+
+                {% if req.other %}
+                    <p>{{ req.other }}</p>
+                {% endif %}
+            </div>
         {% endif %}
 
         <div class="actions">

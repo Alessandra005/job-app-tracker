@@ -112,10 +112,16 @@ def delete_company_route(company_id):
     return redirect(url_for("companies"))
 
 
+
 @app.route("/jobs")
 def jobs():
     all_jobs = get_all_jobs()
     all_companies = get_all_companies()
+
+    for job in all_jobs:
+        job["display_requirements"] = format_job_requirements(
+            job.get("requirements")
+        )
 
     return render_template(
         "jobs.html",
@@ -240,6 +246,26 @@ def requirements_to_text(requirements):
 
     return ""
 
+
+def format_job_requirements(requirements):
+    if not requirements:
+        return {}
+
+    if isinstance(requirements, str):
+        try:
+            requirements = json.loads(requirements)
+        except json.JSONDecodeError:
+            return {"other": requirements}
+
+    if isinstance(requirements, list):
+        return {
+            "required_skills": requirements
+        }
+
+    if isinstance(requirements, dict):
+        return requirements
+
+    return {}
 
 @app.route("/jobs/<int:job_id>/edit", methods=["GET", "POST"])
 def edit_job(job_id):
