@@ -23,7 +23,7 @@ A Flask and MySQL web application for organizing job opportunities, tracking app
 ## Project Structure
 
 ```text
-assignment5/
+job-app-tracker/
 ├── app.py
 ├── database.py
 ├── job_matcher.py
@@ -61,8 +61,8 @@ Before running the application, install:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/Alessandra005/job-app-tracker
-cd assignment5
+git clone https://github.com/Alessandra005/job-app-tracker.git
+cd job-app-tracker
 ```
 
 ### 2. Create a virtual environment
@@ -94,7 +94,7 @@ pip install -r requirements.txt
 Create the database and tables by running `schema.sql` in MySQL:
 
 ```bash
-mysql -u root -p < schema.sql
+cmd /c "mysql -u root -p < schema.sql"
 ```
 
 Enter your MySQL password when prompted.
