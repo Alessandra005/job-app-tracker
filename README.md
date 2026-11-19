@@ -152,6 +152,12 @@ Foreign keys connect jobs and contacts to companies, and applications to jobs. J
 
 See `schema.sql` for the database definitions.
 
+## Project Demonstration
+
+**Video Demo:** [Watch the Job Application Tracker demonstration](https://www.loom.com/share/35f0910e818e486089a7665e109904b8)
+
+The video demonstrates the application's main features, including database integration, CRUD operations, and AI-assisted job matching.
+
 ## AI Documentation
 
 See [AI_USAGE.md](AI_USAGE.md) for information about the generative AI tools used, prompts, implementation decisions, and lessons learned.
